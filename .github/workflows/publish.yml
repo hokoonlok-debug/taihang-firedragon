@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -17,59 +17,23 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      SOURCE_URL: https://longmai-tai-hang.siusamgor2011.chatgpt.site
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Download the complete website
+      - name: Validate website files
         shell: bash
         run: |
           set -euo pipefail
-          files=(
-            app.js engine.js content.js style.css favicon.svg model.glb
-            renders/render-front.png
-            renders/render-right.png
-            renders/render-top.png
-            renders/render-perspective.png
-            renders/render-night.png
-            renders/render-exploded.png
-            vendor/Three-LICENSE.txt
-            vendor/three.core.js
-            vendor/three.module.js
-            vendor/addons/utils/SkeletonUtils.js
-            vendor/addons/utils/BufferGeometryUtils.js
-            vendor/addons/controls/OrbitControls.js
-            vendor/addons/environments/RoomEnvironment.js
-            vendor/addons/loaders/GLTFLoader.js
-          )
-          for file in "${files[@]}"; do
-            mkdir -p "$(dirname "$file")"
-            curl --fail --show-error --silent --location --retry 4 --retry-all-errors --connect-timeout 30 \
-              "$SOURCE_URL/$file" --output "$file"
-            test -s "$file"
-          done
-          printf '\n' > .nojekyll
+          test -s index.html
+          test -s model.glb
           test "$(head -c 4 model.glb)" = "glTF"
-          test "$(wc -c < model.glb)" -gt 20000000
-
-      - name: Save website files to the repository
-        shell: bash
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add app.js engine.js content.js style.css favicon.svg model.glb renders vendor .nojekyll
-          if ! git diff --cached --quiet; then
-            git commit -m "Publish Longmai Tai Hang 3D website"
-            git push origin HEAD:main
-          fi
+          test -s vendor/three.module.js
+          test -s renders/render-perspective.png
 
       - name: Prepare GitHub Pages
         id: pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
