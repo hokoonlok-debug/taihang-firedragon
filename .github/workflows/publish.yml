@@ -28,7 +28,7 @@ jobs:
         run: |
           set -euo pipefail
           files=(
-            index.html app.js engine.js content.js style.css favicon.svg model.glb
+            app.js engine.js content.js style.css favicon.svg model.glb
             renders/render-front.png
             renders/render-right.png
             renders/render-top.png
@@ -59,7 +59,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html app.js engine.js content.js style.css favicon.svg model.glb renders vendor .nojekyll
+          git add app.js engine.js content.js style.css favicon.svg model.glb renders vendor .nojekyll
           if ! git diff --cached --quiet; then
             git commit -m "Publish Longmai Tai Hang 3D website"
             git push origin HEAD:main
