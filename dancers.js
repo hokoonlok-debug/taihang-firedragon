@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {addInscription} from './inscription.js?v=20261020';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 
 // Original rounded collectible characters; intentionally cute contemporary design.
@@ -117,6 +118,7 @@ export function createDancers(baseScene=null){
 }
 
 export function styleExhibit(root){
+ addInscription(root);
  // Only contemporary base and moon-frame finishes change; straw/rope/incense stay intact.
  root.traverse(o=>{if(!o.isMesh)return;
   if(o.name==='倒角石色底座'){o.material=o.material.clone();o.material.color.set('#dfdfd3');o.material.roughness=.84;o.material.metalness=.04;}
