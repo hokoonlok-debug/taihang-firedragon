@@ -1,5 +1,5 @@
 import * as T from 'three';
-import {addInscription} from './inscription.js?v=20261022-brush';
+import {addInscription} from './inscription.js?v=20261022-brush2';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 
 // Original rounded collectible characters; intentionally cute contemporary design.

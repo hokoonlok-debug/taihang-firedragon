@@ -1,6 +1,6 @@
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {GLTFExporter} from 'three/addons/exporters/GLTFExporter.js';
-import {createDancers,styleExhibit} from './dancers.js?v=20261022-brush';
+import {createDancers,styleExhibit} from './dancers.js?v=20261022-brush2';
 export async function exportCompleteModel(){
  const root=(await new GLTFLoader().loadAsync('./model.glb')).scene;
  root.add(createDancers(root));styleExhibit(root);
