@@ -19,3 +19,6 @@ body[data-mode=night] .exhibit{background:radial-gradient(ellipse at center,#344
 .figure-closeup{width:100%;margin-top:18px;background:#f2e5d8;color:#9b4e3e;border-color:#d1a89570;font-size:13px;border-radius:12px;min-height:46px}.figure-closeup:hover{background:#ead7c5}
 body:has(.figure-closeup:focus) .intro p{display:none}
 
+
+.brand h1 img{display:block;width:182px;height:48px;object-fit:contain}.calligraphy-sample{display:block;width:min(360px,100%);height:auto;margin:18px 0}
+@media(max-width:760px){.brand h1 img{width:145px;height:40px}}
