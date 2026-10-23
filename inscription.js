@@ -1,5 +1,5 @@
 import * as T from 'three';
-import {calligraphy} from './inscription-glyphs.js?v=20261022-brush2';
+import {calligraphy} from './inscription-glyphs.js?v=20261023-brush';
 
 // Genuine recessed strokes, curved to the base, retained in GLB exports.
 export function addInscription(root){
